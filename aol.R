@@ -4,6 +4,7 @@ library(dplyr)
 library(tidyr)
 library(caTools)
 library(nnet)
+library(ROCR)
 library(AER)
 
 # 1. read csv files, bikin as factor semua
