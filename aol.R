@@ -37,7 +37,7 @@ sum(is.na(df$HeartDisease))
 count(df)
 
 # 6. membagi dataset menjadi 2 (sebagian kecil untuk validasi dan sisanya untuk pembuatan model)
-
+set.seed(5040)
 split <- sample.split(df, SplitRatio=0.8)
 df_model <- df[split,]
 df_test <- df[!split,]
