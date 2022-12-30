@@ -48,3 +48,21 @@ model_logistic <- multinom(HeartDisease ~ ., data = df)
 summary(model_logistic)
 exp(coefficients(model_logistic))
 coeftest(model_logistic)
+
+prediction <- predict(model_logistic , df_test, type="response")
+prediction <- unname(ifelse(prediction < 0.5, 0, 1))
+
+accuracy <- sum(prediction$HeartDisease == prediction)/length(df_test$HeartDisease)
+precision <- sum(prediction$HeartDisease == 1 & prediction == 1)/(sum(prediction == 1))
+recall <- sum(prediction$HeartDisease == 1 & prediction == 1)/(sum(df_test == 1))
+
+prediction <- ifelse(prediction < 0.5, 0, 1)
+ROCPred <- prediction(prediction, validation$HeartDisease)
+ROCPer <- performance(ROCPred, measure = "tpr", x.measure = "fpr")
+auc <- performance(ROCPred, measure = "auc")
+auc <- auc@y.values[[1]]
+
+plot(ROCPer)
+abline(a = 0, b = 1)
+auc <- round(auc, 4)
+legend(.6, .4, auc, title = "AUC", cex = 1)
