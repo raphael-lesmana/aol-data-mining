@@ -57,7 +57,7 @@ precision <- sum(prediction$HeartDisease == 1 & prediction == 1)/(sum(prediction
 recall <- sum(prediction$HeartDisease == 1 & prediction == 1)/(sum(df_test == 1))
 
 prediction <- ifelse(prediction < 0.5, 0, 1)
-ROCPred <- prediction(prediction, validation$HeartDisease)
+ROCPred <- prediction(prediction, df_test$HeartDisease)
 ROCPer <- performance(ROCPred, measure = "tpr", x.measure = "fpr")
 auc <- performance(ROCPred, measure = "auc")
 auc <- auc@y.values[[1]]
