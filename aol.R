@@ -44,7 +44,7 @@ df_test <- df[!split,]
 # 7. membuat model logistic regression (multiple variables)
 
 # berdasarkan num
-model_logistic <- multinom(HeartDisease ~ ., data = df_model)
+model_logistic <- glm(HeartDisease ~ ., data = df_model, family="binomial")
 summary(model_logistic)
 exp(coefficients(model_logistic))
 coeftest(model_logistic)
