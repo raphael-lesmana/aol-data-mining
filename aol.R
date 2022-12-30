@@ -52,9 +52,9 @@ coeftest(model_logistic)
 prediction <- predict(model_logistic , df_test, type="response")
 prediction <- unname(ifelse(prediction < 0.5, 0, 1))
 
-accuracy <- sum(prediction$HeartDisease == prediction)/length(df_test$HeartDisease)
-precision <- sum(prediction$HeartDisease == 1 & prediction == 1)/(sum(prediction == 1))
-recall <- sum(prediction$HeartDisease == 1 & prediction == 1)/(sum(df_test == 1))
+accuracy <- sum(df_test$HeartDisease == prediction)/length(df_test$HeartDisease)
+precision <- sum(df_test$HeartDisease == 1 & prediction == 1)/(sum(prediction == 1))
+recall <- sum(df_test$HeartDisease == 1 & prediction == 1)/(sum(df_test == 1))
 
 prediction <- ifelse(prediction < 0.5, 0, 1)
 ROCPred <- prediction(prediction, df_test$HeartDisease)
