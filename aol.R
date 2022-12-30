@@ -44,7 +44,7 @@ df_test <- df[!split,]
 # 7. membuat model logistic regression (multiple variables)
 
 # berdasarkan num
-model_logistic <- multinom(HeartDisease ~ ., data = df)
+model_logistic <- multinom(HeartDisease ~ ., data = df_model)
 summary(model_logistic)
 exp(coefficients(model_logistic))
 coeftest(model_logistic)
